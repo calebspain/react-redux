@@ -1,9 +1,12 @@
 @import url( 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
 @import "reset";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
-  // background: purple;
 }
 
 h1 {
@@ -11,56 +14,46 @@ h1 {
   font-size: 50px;
 }
 
-.home {
+header {
+  ul {
+    li {
+      display: inline-block;
+      padding: 20px;
+    }
+  }
+}
+
+.blue-bg {
   height: 100%;
-  width: 100%;
-  text-align: center;
+  background: blue;
+  overflow: auto;
+  padding: 25px;
+}
 
+.danger-red {
+  height: 100%;
+  background: red;
+  overflow: auto;
+  padding: 25px;
+}
+
+.user-info {
+  float: left;
+  width: 50%;
+  color: #fff;
+  h3 {
+    font-size: 30px;
+  }
+}
+
+.logoImageComp {
+  float: left;
+  width: 50%;
   img {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
+    width: 400px;
   }
-
-  .Aligner {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .Aligner-item {
-    max-width: 50%;
-  }
-
-  .menu {
-    ul {
-      li {
-        padding: 10px 15px;
-        display: inline-block;
-        font-family: 'Roboto', sans-serif;
-        font-size: 18px;
-        font-weight: 500;
-      }
-    }
-  }
-
-  .version-num {
-    background: #E8E8E8;
-    border-radius: 4px;
-    padding: 7px 15px;
-    display: inline-block;
-    font-size: 12px;
-    margin: 10px 0 20px;
-  }
-
-  a {
-    text-decoration: none;
-    color: #30395C;
-    transition: all 0.3s ease-in-out;
-
-    &:hover {
-      color: #43D4D6;
-    }
+  h3 {
+    font-size: 30px;
+    color: #fff;
   }
 }

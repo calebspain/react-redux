@@ -1,6 +1,6 @@
-webpackJsonp([1],{
+webpackJsonp([0],{
 
-/***/ 98:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8,11 +8,11 @@ webpackJsonp([1],{
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(32);
+var _react = __webpack_require__(100);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(33);
+var _reactDom = __webpack_require__(101);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -32,77 +32,52 @@ var Layout = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this));
 
-    _this.clickedBtn = function () {
-      console.log('swag');
-    };
-
     _this.state = {
-      name: 'Joe'
+      name: 'Caleb',
+      health: 100,
+      level: 2,
+      lowLevelClass: 'danger-red'
     };
+    _this.clickedButton = _this.clickedButton.bind(_this);
     return _this;
   }
 
   _createClass(Layout, [{
+    key: 'clickedButton',
+    value: function clickedButton() {
+      this.setState({
+        health: this.state.health - 25
+      }, function () {
+        console.log(this.state.health);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'home' },
+        { id: 'parent' },
+        _react2.default.createElement(Header, null),
         _react2.default.createElement(
           'div',
-          { className: 'Aligner' },
+          { className: this.state.health < 55 ? this.state.lowLevelClass : 'blue-bg' },
           _react2.default.createElement(
             'div',
-            { className: 'Aligner-item' },
-            _react2.default.createElement('img', { src: '/img/logo.png' }),
+            { className: 'user-info' },
             _react2.default.createElement(
-              'h1',
+              'h3',
               null,
-              'Starter-Kit-2k18'
+              'Name: ',
+              this.state.name
             ),
             _react2.default.createElement(
-              'div',
-              { className: 'menu' },
-              _react2.default.createElement(
-                'ul',
-                null,
-                _react2.default.createElement(
-                  'div',
-                  { onClick: this.clickedBtn },
-                  'clickked this'
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  _react2.default.createElement(
-                    'a',
-                    { href: 'http://starterkit.codingphase.com', target: 'new' },
-                    'Documentation'
-                  )
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  _react2.default.createElement(
-                    'a',
-                    { href: 'http://www.codingphase.com', target: 'new' },
-                    'CodingPhase.Com'
-                  )
-                )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'version-num' },
-              'version 2.0.18'
-            ),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement(
-              'a',
-              { className: 'github-button', href: 'https://github.com/codingphasedotcom/Starter-Kit-2018', 'data-icon': 'octicon-star', 'data-style': 'mega', 'data-count-href': '/codingphasedotcom/rocky/stargazers', 'data-count-api': '/repos/codingphasedotcom/rocky#stargazers_count', 'data-count-aria-label': '# stargazers on GitHub', 'aria-label': 'Star codingphasedotcom/rocky on GitHub' },
-              'Star'
+              'h3',
+              null,
+              'Level: ',
+              this.state.level
             )
-          )
+          ),
+          _react2.default.createElement(LogoImage, { mickeyMouse: this.clickedButton, health: this.state.health })
         )
       );
     }
@@ -111,10 +86,70 @@ var Layout = function (_Component) {
   return Layout;
 }(_react.Component);
 
+var LogoImage = function (_Component2) {
+  _inherits(LogoImage, _Component2);
+
+  function LogoImage() {
+    _classCallCheck(this, LogoImage);
+
+    var _this2 = _possibleConstructorReturn(this, (LogoImage.__proto__ || Object.getPrototypeOf(LogoImage)).call(this));
+
+    _this2.state = {
+      gameOver: 'Sorry You Lost...'
+    };
+    return _this2;
+  }
+
+  _createClass(LogoImage, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'logoImageComp' },
+        _react2.default.createElement('img', { src: '/img/logo.png', alt: 'girl with bape', onClick: this.props.mickeyMouse }),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Health: ',
+          this.props.health <= 0 ? this.state.gameOver : this.props.health
+        )
+      );
+    }
+  }]);
+
+  return LogoImage;
+}(_react.Component);
+
+var Header = function Header() {
+  return _react2.default.createElement(
+    'header',
+    null,
+    _react2.default.createElement(
+      'ul',
+      null,
+      _react2.default.createElement(
+        'li',
+        null,
+        'Home'
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        'About'
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        'Contact'
+      )
+    )
+  );
+};
+
 var app = document.getElementById('app');
 
 _reactDom2.default.render(_react2.default.createElement(Layout, null), app);
 
 /***/ })
 
-},[98]);
+},[233]);

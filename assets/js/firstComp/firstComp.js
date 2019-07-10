@@ -5,35 +5,68 @@ class Layout extends Component {
   constructor () {
     super()
     this.state = {
-      name: 'Joe'
+      name: 'Caleb',
+      health: 100,
+      level: 2,
+      lowLevelClass: 'danger-red'
     }
+    this.clickedButton = this.clickedButton.bind(this);
   }
-  clickedBtn = () => {
-    console.log('swag')
+
+  clickedButton () {
+    this.setState({
+      health: this.state.health - 25
+    }, function() {
+      console.log(this.state.health);
+    });
   }
+
   render () {
-    return (<div className='home'>
-        <div className='Aligner'>
-          <div className='Aligner-item'>
-            <img src='/img/logo.png' />
-            <h1>Starter-Kit-2k18</h1>
-            <div className='menu'>
-              <ul>
-                <div onClick={this.clickedBtn}>clickked this</div>
-                <li><a href='http://starterkit.codingphase.com' target='new'>Documentation</a></li>
-                <li><a href='http://www.codingphase.com' target='new'>CodingPhase.Com</a></li>
-              </ul>
-            </div>
-            <div className='version-num'>
-              version 2.0.18
-            </div>
-            <br />
-            <a className='github-button' href='https://github.com/codingphasedotcom/Starter-Kit-2018' data-icon='octicon-star' data-style='mega' data-count-href='/codingphasedotcom/rocky/stargazers' data-count-api='/repos/codingphasedotcom/rocky#stargazers_count' data-count-aria-label='# stargazers on GitHub' aria-label='Star codingphasedotcom/rocky on GitHub'>Star</a>
+    return (
+      <div id="parent">
+        <Header />
+        <div className={(this.state.health < 55) ? this.state.lowLevelClass : 'blue-bg'}>
+          <div className="user-info">
+            <h3>Name: {this.state.name}</h3>
+            <h3>Level: {this.state.level}</h3>
           </div>
+          <LogoImage mickeyMouse={this.clickedButton} health={this.state.health}/>
         </div>
-      </div>)
+      </div>
+    )
   }
 }
+
+class LogoImage extends Component {
+  constructor () {
+    super()
+    this.state = {
+      gameOver: 'Sorry You Lost...'
+    }
+  }
+
+  render () {
+    return (
+      <div className="logoImageComp">
+        <img src="/img/logo.png" alt="girl with bape" onClick={this.props.mickeyMouse} />
+        <h3>Health: {(this.props.health <= 0) ? this.state.gameOver : this.props.health}</h3>
+      </div>
+    )
+  }
+}
+
+var Header = function () {
+  return (
+    <header>
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+    </header>
+  )
+};
+
 
 const app = document.getElementById('app')
 
